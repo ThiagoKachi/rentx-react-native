@@ -16,7 +16,7 @@ export default {
 
     success: '#03b252',
 
-    shap: '#e1e1e8',
+    shape: '#e1e1e8',
     shape_dark: '#29292e',
   },
   fonts: {
