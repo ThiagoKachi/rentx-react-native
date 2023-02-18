@@ -1,9 +1,14 @@
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import { Feather } from '@expo/vector-icons';
+import { useTheme } from 'styled-components';
+import { RFValue } from 'react-native-responsive-fontsize';
+
 import { Accessory } from '../../components/Accessory';
 import { BackButton } from '../../components/BackButton';
 import { ImageSlider } from '../../components/ImageSlider';
+import { Button } from '../../components/Button';
 
 import SpeedSvg from '../../assets/speed.svg';
 import AccelerationSvg from '../../assets/acceleration.svg';
@@ -13,13 +18,13 @@ import ExchangeSvg from '../../assets/exchange.svg';
 import PeopleSvg from '../../assets/people.svg';
 
 import * as S from './styles';
-import { Button } from '../../components/Button';
 
-export function CarDetails() {
+export function SchedulingDetails() {
+  const theme = useTheme();
   const navigation = useNavigation<any>();
 
   function handleConfirmRental() {
-    navigation.navigate('Scheduling');
+    navigation.navigate('SchedulingComplete');
   }
 
   return (
@@ -56,16 +61,43 @@ export function CarDetails() {
           <Accessory name="2 pessoas" icon={PeopleSvg} />
         </S.Accessories>
 
-        <S.About>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide indultado
-          na praça Real Maestranza de Sevilla. É um belíssimo carro para quem
-          gosta de acelerar.
-        </S.About>
+        <S.RentalPeriod>
+          <S.CalendarIcon>
+            <Feather name="calendar" size={RFValue(24)} color={theme.colors.shape} />
+          </S.CalendarIcon>
+
+          <S.DateInfo>
+            <S.DateTitle>DE</S.DateTitle>
+            <S.DateValue>18/06/2021</S.DateValue>
+          </S.DateInfo>
+
+          <Feather
+            name="chevron-right"
+            size={RFValue(14)}
+            color={theme.colors.text}
+            style={{ marginHorizontal: 10, marginTop: 15 }}
+          />
+
+          <S.DateInfo>
+            <S.DateTitle>ATÉ</S.DateTitle>
+            <S.DateValue>18/06/2021</S.DateValue>
+          </S.DateInfo>
+        </S.RentalPeriod>
+
+        <S.RentalPrice>
+          <S.RentalPriceLabel>TOTAL</S.RentalPriceLabel>
+          <S.RentalPriceDetails>
+            <S.RentalPriceQuota>R$ 580 x3 diárias</S.RentalPriceQuota>
+            <S.RentalPriceTotal>R$ 2.900</S.RentalPriceTotal>
+          </S.RentalPriceDetails>
+        </S.RentalPrice>
+
       </S.Content>
 
       <S.Footer>
         <Button
-          title="Escolher período do aluguel"
+          title="Alugar agora"
+          color={theme.colors.success}
           onPress={handleConfirmRental}
         />
       </S.Footer>
