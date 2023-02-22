@@ -1,4 +1,5 @@
 import React from 'react';
+import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 import { Accessory } from '../../components/Accessory';
@@ -31,6 +32,7 @@ export function CarDetails() {
 
   return (
     <S.Container>
+      <StatusBar barStyle='dark-content' />
       <S.Header>
         <BackButton onPress={handleBack} />
       </S.Header>

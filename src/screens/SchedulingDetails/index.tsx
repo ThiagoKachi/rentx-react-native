@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { format } from 'date-fns';
 
@@ -82,6 +83,8 @@ export function SchedulingDetails() {
 
   return (
     <S.Container>
+      <StatusBar barStyle='dark-content' />
+
       <S.Header>
         <BackButton onPress={handleBack} />
       </S.Header>

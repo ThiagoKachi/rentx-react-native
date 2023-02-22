@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { StatusBar } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 import { format } from 'date-fns';
@@ -75,6 +76,7 @@ export function Scheduling() {
 
   return (
     <S.Container>
+      <StatusBar barStyle='light-content' />
       <S.Header>
         <BackButton color={theme.colors.shape} onPress={handleBack} />
 

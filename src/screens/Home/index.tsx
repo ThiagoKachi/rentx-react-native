@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { RFValue } from 'react-native-responsive-fontsize';
 import { Ionicons } from '@expo/vector-icons';
@@ -44,6 +45,7 @@ export function Home() {
 
   return (
     <S.Container>
+      <StatusBar barStyle='light-content' />
       <S.Header>
         <S.HeaderContent>
           <Logo height={RFValue(12)} width={RFValue(108)} />
