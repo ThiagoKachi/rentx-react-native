@@ -122,10 +122,6 @@ export function CarDetails() {
 
         <S.About>
           {car.about}
-          {car.about}
-          {car.about}
-          {car.about}
-          {car.about}
         </S.About>
       </Animated.ScrollView>
 
