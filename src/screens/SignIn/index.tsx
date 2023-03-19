@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
+import { useAuth } from '../../hooks/auth';
 import {
   StatusBar,
   KeyboardAvoidingView,
@@ -17,31 +18,38 @@ import { PassWordInput } from "../../components/PassWordInput";
 import * as S from "./styles";
 
 export function SignIn() {
+  const { signIn } = useAuth();
   const theme = useTheme();
   const navigation: any = useNavigation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function handleSignIn() {
     try {
+      setIsLoading(true);
       const schema = Yup.object().shape({
+        password: Yup.string().required("Senha obrigatória"),
         email: Yup.string()
           .required("E-mail obrigatório")
           .email("Digite um e-mail válido"),
-        password: Yup.string().required("Senha obrigatória"),
       });
   
       await schema.validate({ email, password });
+
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
-        return console.log(error);
+        Alert.alert("Opa", error.message)
       } else {
         Alert.alert(
           "Erro na autenticação",
           "Não foi possível fazer login na aplicação, verifique as credenciais."
         )
       }
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -86,8 +94,7 @@ export function SignIn() {
             <Button
               title="Login"
               onPress={handleSignIn}
-              enabled={false}
-              loading={false}
+              loading={isLoading}
             />
 
             <Button

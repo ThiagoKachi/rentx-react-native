@@ -3,14 +3,21 @@ export interface ICar {
   brand: string;
   name: string;
   about: string;
-  rent: Rent;
+  period: string;
+  price: number;
   fuel_type: string;
   thumbnail: string;
   accessories: Accessory[];
-  photos: string[];
+  photos: CarPhotos[];
+}
+
+export interface CarPhotos {
+  id: string;
+  photo: string;
 }
 
 export interface Accessory {
+  id: string;
   type: string;
   name: string;
 }
