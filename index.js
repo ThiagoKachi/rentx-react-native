@@ -1,4 +1,5 @@
 import 'react-native-gesture-handler';
+import '@nozbe/watermelondb'
 
 import { registerRootComponent } from 'expo';
 
